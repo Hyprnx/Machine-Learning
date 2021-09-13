@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{vntex}
+\usepackage{amsmath}
+\usepackage{units}
+
+\title{Machine Learning Homework Week 1}
+\author{Tô Đức Anh}
+\date{September 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Problems}
+    \begin{enumerate}
+        \item To evaluate a new test for detecting Hansen’s disease, a group of people 5\% of which are known to have Hansen’s disease are tested. The test finds Hansen’s disease among 98\% of those with the disease and 3\% of those who don’t. What is the probability that someone testing positive for Hansen’s disease under this new test actually has it?
+        
+        \item Proof the following distributions are normalized then calculate the mean and standard deviation of these distribution:
+        \begin{itemize}
+            \item Univariate normal distribution.
+            \item (Optional) Multivariate normal distribution.
+        \end{itemize}
+            
+    \end{enumerate}
+
+\section{Answers}
+    \subsection{Question 1}
+        \begin{itemize}
+            \item Probability that someone testing positive for Hansen’s disease under this new test actually has it:
+               \begin{equation} \label{eq:1}
+                    \begin{split}
+                        P (actually \ has \ disease \mid tested) = \\ \frac{P(tested \mid actually \ has \ disease)*P(actually\ has \ disease)}{P(tested)} 
+                    \end{split}
+                \end{equation}
+            \item Probability of people with Hansen's disease in the 5\% are known to have Hansen's disease is: 
+                $$ 
+                    5\%\times 98\% = 4.9\% 
+                $$
+            \item Probability of people with Hansen's disease in the 95\% are known to not have Hansen's disease is: 
+                $$
+                    95\%\times 3\%  = 2.85\% 
+                $$
+            \item Probability of people testing positive for Hansen's disease is: 
+                $$ 
+                    4.9\% + 2.85\% = 7.75\% 
+                $$
+            \item Probability that someone testing positive for Hansen’s disease under this new test actually has it is:
+                $$
+                    \frac{5\%\times 98\%}{7.75\%} \approx 63.2\%
+                $$
+            \end{itemize}
+    
+    \subsection{Question 2}
+        \begin{itemize}
+            \item Univariate normal distribution
+            \subsubsection{Formula for univariate normal distribution}
+                    \[
+                        f(x) = \frac{1}{\sigma\sqrt{2\pi}}\times e^{ -\frac{1}{2}(\frac{x - \mu}{\sigma})^2} 
+                    \]
+            With respect to $\mu$ as Mean and $\sigma$ as Standard Deviation
+            
+            \subsubsection {Prove that f(x) always > 0 $\forall \mu $ and $ \sigma $}
+            We can see that $\frac{1}{\sigma\sqrt{2\pi}}$ will always > 0 since the standard deviation $\sigma$ always $\ge$ 0. Therefore $ \frac{1}{\sigma\sqrt{2\pi}}\times e^{ -\frac{1}{2}(\frac{x - \mu}{\sigma})^2} $ will always > 0 $\forall \mu$ and $\sigma$
+            \subsubsection{Prove that $\int_{-\infty}^{\infty} f(x)dx$ = 1}
+            
+            \subsubsection{Prove mean = $\mu$:}
+            We have: 
+                \[
+                        f(x) = \frac{1}{\sigma\sqrt{2\pi}}\times e^{ -\frac{1}{2}(\frac{x - \mu}{\sigma})^2} 
+                \]
+            So that expectation of f(x) is:
+                \begin{equation}
+                    \begin{split}
+                        E[f(x)] & = \int_{-\infty}^{\infty} x \times \frac{1}{\sigma\sqrt{2\pi}}\times e^{ -\frac{1}{2}(\frac{x - \mu}{\sigma})^2}dx \\
+                                & = \frac{1}{\sigma\sqrt{2\pi}} \times \int_{-\infty}^{\infty} x  \times e^{ -\frac{1}{2}(\frac{x - \mu}{\sigma})^2}dx \\
+                                & = \frac{\sqrt{2}\sigma}{\sigma\sqrt{2\pi}} \times \int_{-\infty}^{\infty} \Big(\sqrt{2} \sigma t + \mu\Big) \times e^{-t^2}dt \\ 
+                                & = \frac{1}{\sqrt{\pi}} \times \Bigg(\sqrt{2} \sigma \times
+                                \int_{-\infty}^{\infty}  t \times e^{-t^2} dt + \mu \int_{-\infty}^{\infty} e^{-t^2}dt\Bigg) \\ 
+                                & = \frac{1}{\sqrt{\pi}} \times \Bigg(\sqrt{2} \sigma \times
+                                \Bigg[\frac{-1}{2} \times e^{-t^2}\Bigg] + \mu \times \sqrt{\pi}\Bigg)\\
+                                & = \frac{\mu \sqrt{\pi}}{\sqrt{\pi}}\\
+                                & = \mu
+                    \end{split}
+                \end{equation}
+            \subsubsection{Prove Standard deviation = $\sigma^2$}
+                \begin{equation}
+                    \begin{split}
+                        E[f(x)] & = \int_{-\infty}^{\infty} x \times \frac{1}{\sigma\sqrt{2\pi}}\times e^{ -\frac{1}{2}(\frac{x - \mu}{\sigma})^2}dx \\
+                                & = \frac{1}{\sigma\sqrt{2\pi}} \times \int_{-\infty}^{\infty} x  \times e^{ -\frac{1}{2}(\frac{x - \mu}{\sigma})^2}dx \\
+                                & = \frac{\sqrt{2}\sigma}{\sigma\sqrt{2\pi}} \times \int_{-\infty}^{\infty} \Big(\sqrt{2} \sigma t + \mu\Big) \times e^{-t^2}dt \\ 
+                                & = \frac{1}{\sqrt{\pi}} \times \Bigg(\sqrt{2} \sigma \times
+                                \int_{-\infty}^{\infty}  t \times e^{-t^2} dt + \mu \int_{-\infty}^{\infty} e^{-t^2}dt\Bigg) \\ 
+                                & = \frac{1}{\sqrt{\pi}} \times \Bigg(\sqrt{2} \sigma \times
+                                \Bigg[\frac{-1}{2} \times e^{-t^2}\Bigg] + \mu \times \sqrt{\pi}\Bigg)\\
+                                & = \frac{\mu \sqrt{\pi}}{\sqrt{\pi}}\\
+                                & = \mu
+                    \end{split}
+                \end{equation}
+            \item (Optional) Multivariate normal distribution. 
+                \begin{itemize}
+                    \item Proof that the distribution are normalized:
+                    \item Mean:
+                    \item Standard Deviation:
+                \end{itemize}
+        \end{itemize}
+        
+
+
+\end{document}
